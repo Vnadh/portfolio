@@ -37,10 +37,9 @@ const experiences = [
   },
 ];
 
-// Professional growth timeline visualization
 function GrowthTimeline() {
-  const timelineRef = useRef();
-  
+  const timelineRef = useRef<THREE.Group>(null);
+
   useFrame((state) => {
     if (timelineRef.current) {
       timelineRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
@@ -55,49 +54,36 @@ function GrowthTimeline() {
 
   return (
     <group ref={timelineRef}>
-      {/* Timeline path */}
       {timelinePoints.map((point, index) => {
         if (index < timelinePoints.length - 1) {
           const start = new THREE.Vector3(...point.position);
           const end = new THREE.Vector3(...timelinePoints[index + 1].position);
           const midPoint = start.clone().lerp(end, 0.5);
           const length = start.distanceTo(end);
-          
+
           return (
             <mesh key={`path-${index}`} position={midPoint.toArray()}>
               <cylinderGeometry args={[0.05, 0.05, length]} />
-              <meshStandardMaterial 
-                color="#ffffff" 
-                emissive="#ffffff" 
-                emissiveIntensity={0.2}
-                transparent={true}
-                opacity={0.6}
-              />
+              <meshStandardMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={0.2} transparent opacity={0.6} />
             </mesh>
           );
         }
         return null;
       })}
-      
-      {/* Timeline milestones */}
+
       {timelinePoints.map((point, index) => (
-        <mesh key={`milestone-${index}`} position={point.position}>
+        <mesh key={`milestone-${index}`} position={point.position as [number, number, number]}>
           <sphereGeometry args={[0.3]} />
-          <meshStandardMaterial 
-            color={point.color} 
-            emissive={point.color} 
-            emissiveIntensity={0.4}
-          />
+          <meshStandardMaterial color={point.color} emissive={point.color} emissiveIntensity={0.4} />
         </mesh>
       ))}
     </group>
   );
 }
 
-// AWS Cloud representation
 function CloudInfrastructure() {
-  const cloudRef = useRef();
-  
+  const cloudRef = useRef<THREE.Group>(null);
+
   useFrame((state) => {
     if (cloudRef.current) {
       cloudRef.current.rotation.y = state.clock.elapsedTime * 0.1;
@@ -116,26 +102,18 @@ function CloudInfrastructure() {
   return (
     <group ref={cloudRef} position={[-10, 6, -10]}>
       {cloudPoints.map((point, index) => (
-        <mesh key={index} position={point.position} scale={point.scale}>
+        <mesh key={index} position={point.position as [number, number, number]} scale={point.scale}>
           <sphereGeometry args={[0.8, 8, 6]} />
-          <meshStandardMaterial 
-            color="#ff9500" 
-            emissive="#ff9500" 
-            emissiveIntensity={0.3}
-            transparent={true}
-            opacity={0.6}
-            wireframe={true}
-          />
+          <meshStandardMaterial color="#ff9500" emissive="#ff9500" emissiveIntensity={0.3} transparent opacity={0.6} wireframe />
         </mesh>
       ))}
     </group>
   );
 }
 
-// Machine Learning neural network
 function MLNeuralNetwork() {
-  const networkRef = useRef();
-  
+  const networkRef = useRef<THREE.Group>(null);
+
   useFrame((state) => {
     if (networkRef.current) {
       networkRef.current.rotation.x = state.clock.elapsedTime * 0.15;
@@ -158,18 +136,13 @@ function MLNeuralNetwork() {
             return (
               <mesh key={nodeIndex} position={[layer.x, y, 0]}>
                 <sphereGeometry args={[0.15]} />
-                <meshStandardMaterial 
-                  color={layer.color} 
-                  emissive={layer.color} 
-                  emissiveIntensity={0.4}
-                />
+                <meshStandardMaterial color={layer.color} emissive={layer.color} emissiveIntensity={0.4} />
               </mesh>
             );
           })}
         </group>
       ))}
-      
-      {/* Connections between layers */}
+
       {layers.slice(0, -1).map((layer, layerIndex) => {
         const nextLayer = layers[layerIndex + 1];
         return Array.from({ length: layer.nodes }).map((_, nodeIndex) => {
@@ -180,17 +153,11 @@ function MLNeuralNetwork() {
             const end = new THREE.Vector3(nextLayer.x, endY, 0);
             const midPoint = start.clone().lerp(end, 0.5);
             const length = start.distanceTo(end);
-            
+
             return (
               <mesh key={`${nodeIndex}-${nextNodeIndex}`} position={midPoint.toArray()}>
                 <cylinderGeometry args={[0.01, 0.01, length]} />
-                <meshStandardMaterial 
-                  color="#9333ea" 
-                  emissive="#9333ea" 
-                  emissiveIntensity={0.2}
-                  transparent={true}
-                  opacity={0.4}
-                />
+                <meshStandardMaterial color="#9333ea" emissive="#9333ea" emissiveIntensity={0.2} transparent opacity={0.4} />
               </mesh>
             );
           });
@@ -200,10 +167,9 @@ function MLNeuralNetwork() {
   );
 }
 
-// Professional building blocks
 function ProfessionalBlocks() {
-  const blocksRef = useRef();
-  
+  const blocksRef = useRef<THREE.Group>(null);
+
   useFrame((state) => {
     if (blocksRef.current) {
       blocksRef.current.rotation.y = state.clock.elapsedTime * 0.2;
@@ -219,26 +185,18 @@ function ProfessionalBlocks() {
   return (
     <group ref={blocksRef} position={[0, -2, -12]}>
       {blocks.map((block, index) => (
-        <mesh key={index} position={block.position}>
-          <boxGeometry args={block.size} />
-          <meshStandardMaterial 
-            color={block.color} 
-            emissive={block.color} 
-            emissiveIntensity={0.2}
-            transparent={true}
-            opacity={0.7}
-            wireframe={true}
-          />
+        <mesh key={index} position={block.position as [number, number, number]}>
+          <boxGeometry args={block.size as [number, number, number]} />
+          <meshStandardMaterial color={block.color} emissive={block.color} emissiveIntensity={0.2} transparent opacity={0.7} wireframe />
         </mesh>
       ))}
     </group>
   );
 }
 
-// Floating tech symbols
 function TechSymbols() {
-  const symbolsRef = useRef();
-  
+  const symbolsRef = useRef<THREE.Group>(null);
+
   useFrame((state) => {
     if (symbolsRef.current) {
       symbolsRef.current.rotation.x = state.clock.elapsedTime * 0.05;
@@ -246,18 +204,15 @@ function TechSymbols() {
     }
   });
 
-  const symbols = [];
-  for (let i = 0; i < 25; i++) {
-    symbols.push({
-      position: [
-        (Math.random() - 0.5) * 30,
-        (Math.random() - 0.5) * 20,
-        (Math.random() - 0.5) * 30
-      ],
-      color: ['#ff9500', '#3b82f6', '#8b5cf6'][Math.floor(Math.random() * 3)],
-      shape: ['cube', 'tetrahedron', 'octahedron'][Math.floor(Math.random() * 3)]
-    });
-  }
+  const symbols = Array.from({ length: 25 }).map(() => ({
+    position: [
+      (Math.random() - 0.5) * 30,
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 30,
+    ] as [number, number, number],
+    color: ['#ff9500', '#3b82f6', '#8b5cf6'][Math.floor(Math.random() * 3)],
+    shape: ['cube', 'tetrahedron', 'octahedron'][Math.floor(Math.random() * 3)],
+  }));
 
   return (
     <group ref={symbolsRef}>
@@ -266,63 +221,28 @@ function TechSymbols() {
           {symbol.shape === 'cube' && <boxGeometry args={[0.1, 0.1, 0.1]} />}
           {symbol.shape === 'tetrahedron' && <tetrahedronGeometry args={[0.1]} />}
           {symbol.shape === 'octahedron' && <octahedronGeometry args={[0.1]} />}
-          <meshStandardMaterial 
-            color={symbol.color} 
-            emissive={symbol.color} 
-            emissiveIntensity={0.3}
-            transparent={true}
-            opacity={0.6}
-          />
+          <meshStandardMaterial color={symbol.color} emissive={symbol.color} emissiveIntensity={0.3} transparent opacity={0.6} />
         </mesh>
       ))}
     </group>
   );
 }
 
-// Main 3D Scene
 function ExperienceScene3D() {
   return (
     <>
-      {/* Starry background */}
-      <Stars 
-        radius={100} 
-        depth={50} 
-        count={3500} 
-        factor={4} 
-        saturation={0.6} 
-        fade 
-        speed={0.4}
-      />
-      
-      {/* Lighting setup */}
+      <Stars radius={100} depth={50} count={3500} factor={4} saturation={0.6} fade speed={0.4} />
       <ambientLight intensity={0.4} color="#ffffff" />
       <pointLight position={[10, 10, 10]} intensity={0.8} color="#ff9500" />
       <pointLight position={[-10, -10, -10]} intensity={0.6} color="#3b82f6" />
       <pointLight position={[0, 0, 15]} intensity={0.5} color="#8b5cf6" />
-      <directionalLight
-        position={[20, 20, 20]}
-        intensity={0.3}
-        color="#ffffff"
-        castShadow
-      />
-      
-      {/* 3D Elements */}
+      <directionalLight position={[20, 20, 20]} intensity={0.3} color="#ffffff" castShadow />
       <GrowthTimeline />
       <CloudInfrastructure />
       <MLNeuralNetwork />
       <ProfessionalBlocks />
       <TechSymbols />
-      
-      {/* Orbit controls */}
-      <OrbitControls 
-        autoRotate 
-        autoRotateSpeed={0.4}
-        enableZoom={false}
-        enablePan={false}
-        enableRotate={false}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 2}
-      />
+      <OrbitControls autoRotate autoRotateSpeed={0.4} enableZoom={false} enablePan={false} enableRotate={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
     </>
   );
 }
@@ -338,13 +258,10 @@ const Experience = () => {
 
   return (
     <div className="min-h-screen relative py-20 overflow-hidden">
-      {/* 3D Background Canvas */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Canvas
           camera={{ position: [0, 0, 18], fov: 75 }}
-          style={{ 
-            background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #1e293b 100%)' 
-          }}
+          style={{ background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #1e293b 100%)' }}
           dpr={[1, 2]}
           performance={{ min: 0.5 }}
         >
@@ -352,7 +269,6 @@ const Experience = () => {
         </Canvas>
       </div>
 
-      {/* Content */}
       <div className="relative z-10 container mx-auto px-6">
         <div className="text-center mb-16">
           <h1 className="text-6xl font-bold text-white mb-6 bg-gradient-to-r from-orange-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -365,10 +281,7 @@ const Experience = () => {
 
         <div className="max-w-4xl mx-auto space-y-8">
           {experiences.map((exp, index) => (
-            <Card
-              key={index}
-              className="bg-white/10 border-white/20 backdrop-blur-md hover:bg-white/20 transition-all duration-300 shadow-2xl"
-            >
+            <Card key={index} className="bg-white/10 border-white/20 backdrop-blur-md hover:bg-white/20 transition-all duration-300 shadow-2xl">
               <CardHeader>
                 <CardTitle className="text-white">
                   <div className="flex items-center gap-4">
@@ -387,7 +300,7 @@ const Experience = () => {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="text-gray-300">📅</span>
+                  <span className="text-gray-300">🗓️</span>
                   <Badge variant="secondary" className="bg-white/20 text-white border-white/30 shadow-sm">
                     {exp.duration}
                   </Badge>

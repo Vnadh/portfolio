@@ -6,8 +6,9 @@ export default function Footer() {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let width = mountRef.current?.clientWidth || window.innerWidth;
-    let height = 300; // Footer height
+    // FIX 1 & 2: 'width' and 'height' are never reassigned, so use 'const'
+    const width = mountRef.current?.clientWidth || window.innerWidth;
+    const height = 300; // Footer height
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
@@ -15,7 +16,12 @@ export default function Footer() {
 
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(width, height);
-    mountRef.current?.appendChild(renderer.domElement);
+
+    // FIX 3: Capture mountRef.current in a local variable for the cleanup function
+    const currentMount = mountRef.current;
+    if (currentMount) { // Ensure mountRef.current exists before appending
+      currentMount.appendChild(renderer.domElement);
+    }
 
     // Add stars
     const starGeometry = new THREE.BufferGeometry();
@@ -40,19 +46,25 @@ export default function Footer() {
 
     // Animate
     const animate = () => {
+      // Use requestAnimationFrame recursively to create the animation loop
+      requestAnimationFrame(animate);
+
       stars.rotation.x += 0.0005;
       stars.rotation.y += 0.0005;
 
       renderer.render(scene, camera);
-      requestAnimationFrame(animate);
     };
     animate();
 
     // Cleanup
     return () => {
-      mountRef.current?.removeChild(renderer.domElement);
+      // FIX 3 (continued): Use the captured local variable for cleanup
+      if (currentMount && currentMount.contains(renderer.domElement)) {
+        currentMount.removeChild(renderer.domElement);
+      }
+      renderer.dispose(); // Important to dispose of the renderer to free up resources
     };
-  }, []);
+  }, []); // Empty dependency array as this effect runs only once on mount
 
   return (
     <div
@@ -66,7 +78,8 @@ export default function Footer() {
         textAlign: 'center',
       }}
     >
-      <div ref={mountRef} style={{ position: 'absolute', top: 0, left: 0 }} />
+      {/* The div where Three.js canvas will be mounted */}
+      <div ref={mountRef} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
       <div
         style={{
           position: 'relative',
