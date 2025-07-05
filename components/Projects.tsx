@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useRef, useMemo } from 'react';
 import { Eye, TrendingUp, Brain, Shield, Video, Github } from 'lucide-react';
-import Image from 'next/image';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Stars, OrbitControls, Float } from '@react-three/drei';
 import * as THREE from 'three';
@@ -11,7 +10,6 @@ const projects = [
     title: "VisionGuard",
     description: "A state-of-the-art deep learning system for detecting and classifying 8 ocular diseases from retinal images. Built on EfficientNet-B4 with enhancements like Stochastic Depth and Squeeze-and-Excitation layers, it achieves robust performance across diverse clinical scenarios.",
     icon: <Eye className="w-8 h-8" />,
-    image: "/assets/visionguard-screenshot.jpg",
     tags: ["Deep Learning", "Computer Vision", "EfficientNet", "Medical AI"],
     color: "from-blue-500 to-cyan-500",
     githubLink: "https://github.com/Vnadh/VisionGuard",
@@ -20,7 +18,6 @@ const projects = [
     title: "RL Crypto Trading Bot",
     description: "An advanced reinforcement learning crypto trading system implementing PPO, A2C, and DQN algorithms for optimized BTC/USDT trading strategies.",
     icon: <TrendingUp className="w-8 h-8" />,
-    image: "/assets/rl-crypto-bot-screenshot.png",
     tags: ["Reinforcement Learning", "Crypto Trading", "PPO", "DQN", "A2C"],
     color: "from-green-500 to-emerald-500",
     githubLink: "https://github.com/Vnadh/RL-Crypto-Trading-Bot",
@@ -29,7 +26,6 @@ const projects = [
     title: "Brain Tumor Classification",
     description: "This Streamlit application enables users to upload brain MRI images and perform tumor classification using a pre-trained ResNet18 model, with visualizations provided by various Grad-CAM techniques. The app supports four tumor classes: glioma, meningioma, no tumor, and pituitary.",
     icon: <Brain className="w-8 h-8" />,
-    image: "/assets/brain-tumor-screenshot.png",
     tags: ["Medical AI", "ResNet18", "Grad-CAM", "Streamlit", "Classification"],
     color: "from-purple-500 to-pink-500",
     githubLink: "https://github.com/Vnadh/brain-tumors",
@@ -38,7 +34,6 @@ const projects = [
     title: "Deepfake Detection",
     description: "Deepfakes allow bogus(fake) content creation through artificial intelligence technology, and it is impacting society a lot. Human beings are not able to identify which one is fake and which one is real.",
     icon: <Shield className="w-8 h-8" />,
-    image: "/assets/deepfake-detection-screenshot.png",
     tags: ["Multimodal Learning", "Computer Vision", "Security", "Detection"],
     color: "from-red-500 to-orange-500",
     githubLink: "https://github.com/Vnadh/DeepfakeDetectionUsingMultimodalDeepLearning",
@@ -47,7 +42,6 @@ const projects = [
     title: "Flux - YouTube Clone",
     description: "This project is a modern YouTube clone application built using React JS and Material UI. The application aims to mimic the core functionalities of YouTube, including video browsing, searching, and viewing, all within a sleek and responsive user interface.",
     icon: <Video className="w-8 h-8" />,
-    image: "/assets/flux-screenshot.png",
     tags: ["React", "Material UI", "Video Streaming", "Web Development"],
     color: "from-yellow-500 to-red-500",
     githubLink: "https://github.com/Vnadh/flux",
@@ -235,7 +229,6 @@ const ProjectCard: React.FC<{
     title: string;
     description: string;
     icon: React.ReactNode;
-    image: string;
     tags: string[];
     color: string;
     githubLink: string;
@@ -264,9 +257,6 @@ const ProjectCard: React.FC<{
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div className={`p-3 rounded-xl bg-gradient-to-br ${project.color} text-white shadow-lg`}>{project.icon}</div>
-          <div className="flex items-center justify-center">
-            <Image src={project.image} alt={project.title} width={150} height={0} />
-          </div>
           <div className="flex space-x-2">
             <a
               href={project.githubLink}
