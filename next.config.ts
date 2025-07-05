@@ -1,15 +1,13 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === 'production';
 const nextConfig: NextConfig = {
-  /* config options here */
-  output: 'export',
-  reactStrictMode: true,
+  output: 'export', // required for `next export`
+  basePath: isProd ? '/portfolio' : '',
+  assetPrefix: isProd ? '/portfolio/' : '',
   images: {
-    unoptimized: true, // IMPORTANT for GitHub Pages
-  },
-  // Replace 'your-repository-name' with your actual GitHub repository name
-  basePath: process.env.NODE_ENV === 'production' ? 'https://vnadh.github.io/portfolio/' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://vnadh.github.io/portfolio/' : '',
+    unoptimized: true, // required for static export with <Image />
+  }
 };
 
 export default nextConfig;
