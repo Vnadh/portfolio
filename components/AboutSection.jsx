@@ -283,7 +283,7 @@ const AboutSection = () => {
           <div className="flex justify-center">
             <Avatar className="w-32 h-32 border-2 border-cyan-400/30 shadow-2xl">
               <AvatarFallback className="bg-gradient-to-r from-cyan-400 to-blue-600 text-white text-2xl font-bold">
-                <Image src="/assets/profile.jpg" alt="Profile Picture" width={150} height={150} />
+                <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/assets/profile.jpg`} alt="Profile Picture" width={150} height={150} />
               </AvatarFallback>
             </Avatar>
           </div>
