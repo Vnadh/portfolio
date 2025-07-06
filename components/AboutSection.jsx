@@ -6,6 +6,7 @@ import { Stars, OrbitControls, Text3D, Center } from '@react-three/drei';
 import * as THREE from 'three';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import Image from 'next/image';
 
 // Animated geometric shapes
 function AnimatedSphere({ position, color, speed = 1, size = 1 }) {
@@ -282,13 +283,13 @@ const AboutSection = () => {
           <div className="flex justify-center">
             <Avatar className="w-32 h-32 border-2 border-cyan-400/30 shadow-2xl">
               <AvatarFallback className="bg-gradient-to-r from-cyan-400 to-blue-600 text-white text-2xl font-bold">
-                VNadh
+                <Image src='/profie.jpg' alt='VNadh' width={200} height={200}/>
               </AvatarFallback>
             </Avatar>
           </div>
           <div className="space-y-4 text-center">
             <p className="text-cyan-100/90 leading-relaxed text-lg drop-shadow-sm">
-              Hello! I'm <span className="font-semibold text-cyan-300 drop-shadow-sm">Veerendra Nadh</span>, a passionate B.Tech Computer Science and Engineering 
+              Hello! I'm <span className="font-semibold text-cyan-300 drop-shadow-sm">Veerendra Nadh</span>, a B.Tech Computer Science and Engineering 
               student at Lakireddy Bali Reddy College of Engineering (2021-2025).
             </p>
             <p className="text-cyan-100/90 leading-relaxed text-lg drop-shadow-sm">
