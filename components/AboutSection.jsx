@@ -283,7 +283,7 @@ const AboutSection = () => {
           <div className="flex justify-center">
             <Avatar className="w-32 h-32 border-2 border-cyan-400/30 shadow-2xl">
               <AvatarFallback className="bg-gradient-to-r from-cyan-400 to-blue-600 text-white text-2xl font-bold">
-                <Image src='/profie.jpg' alt='VNadh' width={200} height={200}/>
+                VNadh
               </AvatarFallback>
             </Avatar>
           </div>
