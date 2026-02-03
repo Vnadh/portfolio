@@ -290,7 +290,7 @@ const AboutSection = () => {
           <div className="space-y-4 text-center">
             <p className="text-cyan-100/90 leading-relaxed text-lg drop-shadow-sm">
               I’m <span className="font-semibold text-cyan-300 drop-shadow-sm">Veerendra Nadh</span>, an M.Tech Computer Science 
-              and Engineering student at the University of Hyderabad, with a strong foundation in full-stack web 
+               student at the University of Hyderabad, with a strong foundation in full-stack web 
               development and machine learning. I enjoy building clean, intuitive web interfaces and developing 
               intelligent systems that turn data into meaningful insights.
             </p>
