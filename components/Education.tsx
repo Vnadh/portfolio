@@ -207,6 +207,37 @@ export default function Education() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold">
+                      MTech in Computer Science
+                    </h3>
+                    <div className="flex items-center gap-2 text-blue-200 mt-2">
+                      <span className="text-sm">📍</span>
+                      <span> University of Hyderabad</span>
+                    </div>
+                  </div>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-gray-300">📅</span>
+                <Badge
+                  variant="secondary"
+                  className="bg-white/20 text-white border-white/30 shadow-sm"
+                >
+                  2025-present
+                </Badge>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="bg-white/10 border-white/20 backdrop-blur-md hover:bg-white/20 transition-all duration-300 shadow-2xl">
+            <CardHeader>
+              <CardTitle className="text-white">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                    <span className="text-white font-bold text-xl">💻</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold">
                       BTech in Computer Science and Engineering
                     </h3>
                     <div className="flex items-center gap-2 text-blue-200 mt-2">

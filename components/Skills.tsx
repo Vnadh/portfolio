@@ -16,7 +16,7 @@ const skillsData = [
   },
   {
     category: "Full-Stack Development",
-    skills: ["HTML", "CSS", "React.js", "Next.js", "REST APIs"],
+    skills: ["HTML", "CSS", "React.js", "Next.js", "Node.js","REST APIs"],
     icon: "🌐",
     color: "from-[#2d1674] to-[#b0c9b8]",
   },

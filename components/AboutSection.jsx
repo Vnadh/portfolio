@@ -289,20 +289,15 @@ const AboutSection = () => {
           </div>
           <div className="space-y-4 text-center">
             <p className="text-cyan-100/90 leading-relaxed text-lg drop-shadow-sm">
-              Hello! I'm <span className="font-semibold text-cyan-300 drop-shadow-sm">Veerendra Nadh</span>, a B.Tech Computer Science and Engineering 
-              student at Lakireddy Bali Reddy College of Engineering (2021-2025).
+              I’m <span className="font-semibold text-cyan-300 drop-shadow-sm">Veerendra Nadh</span>, an M.Tech Computer Science 
+              and Engineering student at the University of Hyderabad, with a strong foundation in full-stack web 
+              development and machine learning. I enjoy building clean, intuitive web interfaces and developing 
+              intelligent systems that turn data into meaningful insights.
             </p>
             <p className="text-cyan-100/90 leading-relaxed text-lg drop-shadow-sm">
-              My journey through the digital cosmos is fueled by a deep fascination 
-              for both <span className="font-semibold text-cyan-300 drop-shadow-sm">web development</span> and{' '}
-              <span className="font-semibold text-cyan-300 drop-shadow-sm">machine learning</span>. I thrive on crafting 
-              intuitive and visually appealing user interfaces, while also delving 
-              into the complexities of artificial intelligence to build intelligent 
-              systems.
-            </p>
-            <p className="text-cyan-100/90 leading-relaxed text-lg drop-shadow-sm">
-              I believe in continuous learning and leveraging technology to 
-              solve real-world problems.
+              With hands-on experience in <span className="font-semibold text-cyan-300 drop-shadow-sm">modern web technologies and end-to-end machine learning</span> workflows, 
+              I’m passionate about continuous learning and applying technology to solve real-world problems. 
+              I’m currently focused on strengthening my skills in scalable software systems and AI-driven applications.
             </p>
           </div>
         </CardContent>
